@@ -1,5 +1,4 @@
 // Ignore for testing purposes
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -18,8 +17,9 @@ void main() {
 
     setUp(() {
       pokemonCardRepository = MockPokemonCardRepository();
-      when(() => pokemonCardRepository.getCards(page: any(named: 'page')))
-          .thenAnswer((_) async => <PokemonCard>[]);
+      when(
+        () => pokemonCardRepository.getCards(page: any(named: 'page')),
+      ).thenAnswer((_) async => <PokemonCard>[]);
       pokemonCardBloc = PokemonCardBloc(
         pokemonCardRepository: pokemonCardRepository,
       )..add(CardsFetched());
